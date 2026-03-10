@@ -1354,29 +1354,14 @@ bool IUIScene_AbstractContainerMenu::handleKeyDown(int iPad, int iAction, bool b
 		if (!bRepeat)
 		{
 			validKeyPress = TRUE;
-
 			// Standard left click
 			buttonNum = 0;
 			if (g_KBMInput.IsKeyDown(VK_LSHIFT))
 			{
-				{
-					validKeyPress = TRUE;
-
-					// Shift and left click
-					buttonNum = 0;
-					quickKeyHeld = TRUE;
-					if (IsSectionSlotList(m_eCurrSection))
-					{
-						int currentIndex = getCurrentIndex(m_eCurrSection) - getSectionStartOffset(m_eCurrSection);
-
-						bool bcanPlaySound = !isSlotEmpty(m_eCurrSection, currentIndex);
-						if (bcanPlaySound)
-							ui.PlayUISFX(eSFX_Press);
-					}
-				}
+				// Shift and left click
+				quickKeyHeld = TRUE;
 			}
-			else {
-				if (IsSectionSlotList(m_eCurrSection))
+			if (IsSectionSlotList(m_eCurrSection))
 				{
 					int currentIndex = getCurrentIndex(m_eCurrSection) - getSectionStartOffset(m_eCurrSection);
 
@@ -1384,8 +1369,6 @@ bool IUIScene_AbstractContainerMenu::handleKeyDown(int iPad, int iAction, bool b
 					if (bcanPlaySound)
 						ui.PlayUISFX(eSFX_Press);
 				}
-				//
-			}
 		}
 		break;
 	case ACTION_MENU_X:
